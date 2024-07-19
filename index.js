@@ -1,5 +1,5 @@
 var files = [ "v6ns","domain","v6ns1"];
-var variables = [ "domain","ns","hostmaster","4","6","1280","buggy","serial" ];
+var variables = [ "domain","ns","hostmaster","4","6","1280","serial" ];
 
 
 function update_serial() {
@@ -20,38 +20,10 @@ function update_serial() {
  $("#form_serial").val(   yyyy + mm + dd );        
 
 }
-function update_buggydns() {
-  ipv4 = $("#form_4").val();
-  parts = ipv4.split(".");
-  s = "";
-  for (i=0; i < parts.length; i++) {
-    val = parseInt(parts[i],10);
-    hex = val.toString(16);
-    if (hex.length == 1) {
-      hex = "0" + hex;
-    }
-    s = s + hex;
-  }
-  r = s.substring(0,4) + ":" + s.substring(4,8) + ":" + 
-  s.substring(0,4) + ":" + s.substring(4,8) + ":" + 
-  s.substring(0,4) + ":" + s.substring(4,8) + ":" + 
-  s.substring(0,4) + ":" + s.substring(4,8);
-  $("#form_buggy").val(r)
-  
-  if (parts[0] < 32) {
-    return true;
-  }
-  if (parts[0] > 63) {
-    return true;
-  }
-  return false;
-}
-
 
 function update_templates() {
   try {
     update_serial();
-    safe=update_buggydns()
   } catch (err) {
   }
 
@@ -59,9 +31,6 @@ function update_templates() {
     file = files[i];
     template = templates[file];
     
-    if (safe) {
-      template = template.replace(/;buggydns1/,'buggydns1');
-    }
     
     for (j=0; j < variables.length; j++) {
         variable = variables[j];

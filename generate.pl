@@ -37,12 +37,6 @@ ds		AAAA	$argv{6}
 v6ns		ns	v6ns1
 v6ns1		AAAA	$argv{6}
 
-; buggydns detects CPE devices that misinterpret AAAA 
-; requests for A; the buggy CPE will return either the
-; first or last 32 bits.
-; Do not use where IPv4 is between 32.0.0.0 and 63.255.255.255.
-;buggydns1	AAAA	$argv{buggy}
-
 ; Convenience names not used in the tests;
 ; but perhaps friendly for humans
 a		A	$argv{4}
